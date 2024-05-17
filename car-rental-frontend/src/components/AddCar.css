@@ -1,0 +1,19 @@
+/* src/components/AddCar.css */
+
+.add-car {
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin: 20px;
+  }
+  
+  .add-car input,
+  .add-car button {
+    display: block;
+    margin: 10px 0;
+  }
+  
+  .car-preview {
+    max-width: 200px;
+    margin-top: 10px;
+  }
+  

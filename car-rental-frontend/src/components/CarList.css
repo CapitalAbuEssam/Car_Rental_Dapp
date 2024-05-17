@@ -1,0 +1,30 @@
+.car-item {
+  border: 2px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.car-image {
+  width: 300px;
+  height: 300px;
+}
+
+.rented {
+  background-color: #ffcccc; /* Light red */
+}
+
+.available {
+  background-color: #f2f2f2; /* Light gray */
+}
+
+.return-btn {
+  background-color: #ff0000; /* Red */
+  color: #fff;
+  cursor: pointer;
+}
+
+.return-btn:disabled {
+  background-color: #ccc; /* Light gray */
+  color: #666;
+  cursor: not-allowed;
+}

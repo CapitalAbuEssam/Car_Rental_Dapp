@@ -1,5 +1,4 @@
-// src/components/CarList.js
-/* global BigInt */
+
 import React, { useState, useEffect } from 'react';
 import CarRentalContract from '../build/contracts/CarRental.json';
 import getWeb3 from '../getWeb3';
@@ -75,10 +74,16 @@ const CarList = () => {
   };
   
   const handleRentCar = async (carId) => {
+    // Check if rental days are undefined or empty
+    if (!rentalDays[carId]) {
+      alert('Please enter the number of days to rent the car');
+      return;
+    }
+  
     const days = BigInt(rentalDays[carId]);
     const pricePerDay = BigInt(cars.find(car => car.id === carId).pricePerDay);
     const totalCost = pricePerDay * days;
-
+  
     try {
       await contract.methods.rentCar(carId, days).send({ from: accounts[0], value: totalCost.toString() });
       alert(`Car rented for ${days} days`);
@@ -101,10 +106,22 @@ const CarList = () => {
   };
 
   const handleDaysChange = (carId, value) => {
-    setRentalDays({
-      ...rentalDays,
-      [carId]: value
-    });
+    // Parse the input value as an integer
+    const newValue = parseInt(value);
+    // Check if the parsed value is a valid positive number
+    if (!isNaN(newValue) && newValue > 0) {
+      // Update the rental days state
+      setRentalDays({
+        ...rentalDays,
+        [carId]: newValue
+      });
+    } else {
+      // If the input is invalid, set the rental days to an empty string
+      setRentalDays({
+        ...rentalDays,
+        [carId]: ''
+      });
+    }
   };
 
   const getCarImage = (carName) => {
@@ -117,8 +134,8 @@ const CarList = () => {
         return mclaren;
       case 'ferrari':
         return ferrari;
-      case 'ferrari':
-          return ferrari;
+      case 'f12':
+          return f12;
       // Add cases for other cars as needed
       default:
         return DefaultCarImage; // Return null for unknown cars
@@ -140,7 +157,7 @@ const CarList = () => {
                 <div style={{ backgroundColor: '#f2f2f2', padding: '5px', marginBottom: '5px' }}>
                   Rented by account {car.renter.slice(-6)}
                 </div>
-                <button disabled style={{ backgroundColor: '#f2f2f2', color: '#666', cursor: 'not-allowed' }}>Rented</button>
+                <button disabled className="rented">Rented</button>
               </>
             ) : (
               <>
@@ -150,13 +167,13 @@ const CarList = () => {
                   value={rentalDays[car.id] || ''}
                   onChange={(e) => handleDaysChange(car.id, e.target.value)}
                 />
-                <button onClick={() => handleRentCar(car.id)} style={{ backgroundColor: 'green', color: 'white' }} disabled={rentalStatus[car.id]}>
+                <button onClick={() => handleRentCar(car.id)} className="rent-btn" disabled={rentalStatus[car.id]}>
                   Rent Car
                 </button>
               </>
             )}
             {rentalStatus[car.id] && car.renter === accounts[0] && (
-              <button onClick={() => handleReturnCar(car.id)} style={{ backgroundColor: 'red' }}>
+              <button onClick={() => handleReturnCar(car.id)} className="return-btn">
                 Return Car
               </button>
             )}

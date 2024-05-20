@@ -1,13 +1,13 @@
 .add-car {
   padding: 20px;
-  border: 1px solid #ccc;
-  margin: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  margin: 20px auto;
   width: 80%;
   max-width: 600px;
-  margin: 20px auto;
-  background-color: rgba(255, 255, 255, 0.1); /* Reduced opacity */
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .add-car input,
@@ -15,11 +15,16 @@
   display: block;
   margin: 10px auto;
   width: calc(100% - 20px);
-  padding: 12px;
+  padding: 15px;
   font-size: 16px;
-  border: 1px solid #ccc;
+  border: none;
   border-radius: 20px;
   text-align: center;
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #000000;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .add-car input:focus,
@@ -27,21 +32,32 @@
   outline: none;
 }
 
+.add-car button:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
 .car-preview {
   max-width: 100%;
   height: auto;
   display: block;
   margin-top: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  transition: box-shadow 0.3s ease;
+}
+
+.car-preview:hover {
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
 }
 
 body {
-  background-image: url('/Users/muhammad/Desktop/Car_Rental_Final_Blockchain-1/car-rental-frontend/src/vivid-blurred-colorful-background.jpg');
+  background-image: url('/Users/muhammad/Desktop/Car_Rental_Final_Blockchain-1/car-rental-frontend/src/codioful-formerly-gradienta-LeG68PrXA6Y-unsplash.jpg');
   background-size: cover;
   background-position: center;
-  color: #333;
-  font-family: Arial, sans-serif;
+  color: #2a2a2a;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
 }
+

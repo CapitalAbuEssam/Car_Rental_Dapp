@@ -31,5 +31,5 @@ Lastly, you'll download the Metamask extension from your browser.
 ```cd car-rental-frontend```
 ```npm start```
 
-
+# Enjoy your local Dapp Car Rental!
 

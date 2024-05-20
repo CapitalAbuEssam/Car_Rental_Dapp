@@ -1,12 +1,44 @@
+/* CarList.css */
+.car-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.car-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 200px; 
+}
+
 .car-item {
   border: 2px solid #ccc;
   padding: 20px;
-  margin-bottom: 20px;
+  margin: 15px;
+  border-radius: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  width: 240px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.car-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .car-image {
-  width: 300px;
-  height: 300px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  transition: transform 0.3s;
+}
+
+.car-item:hover .car-image {
+  transform: scale(1.1);
 }
 
 .rented {
@@ -21,10 +53,68 @@
   background-color: #ff0000; /* Red */
   color: #fff;
   cursor: pointer;
+  padding: 8px 16px; /* Reduced padding */
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.return-btn:hover:not(:disabled) {
+  background-color: #cc0000; /* Darker red */
 }
 
 .return-btn:disabled {
   background-color: #ccc; /* Light gray */
   color: #666;
   cursor: not-allowed;
+}
+
+.rent-btn {
+  background-color: #28a745; /* Green */
+  color: white;
+  cursor: pointer;
+  padding: 8px 12px; /* Reduced padding */
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  margin-top: 10px; /* Move the rent button down */
+}
+
+.rent-btn:hover:not(:disabled) {
+  background-color: #218838; /* Darker green */
+}
+
+.rent-input {
+  width: calc(100% - 40px); /* Adjusted width */
+  padding: 10px; /* Increased padding */
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.car-item-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.car-name {
+  font-size: 1.6em; /* Increased font size */
+  font-weight: bold;
+  margin: 20px 0 10px 0; /* Adjusted margin */
+  color: #333;
+}
+
+.car-price {
+  font-size: 1.2em; /* Increased font size */
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.car-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
 }

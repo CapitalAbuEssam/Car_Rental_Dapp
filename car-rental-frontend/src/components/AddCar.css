@@ -1,19 +1,47 @@
-/* src/components/AddCar.css */
-
 .add-car {
-    padding: 20px;
-    border: 1px solid #ccc;
-    margin: 20px;
-  }
-  
-  .add-car input,
-  .add-car button {
-    display: block;
-    margin: 10px 0;
-  }
-  
-  .car-preview {
-    max-width: 200px;
-    margin-top: 10px;
-  }
-  
+  padding: 20px;
+  border: 1px solid #ccc;
+  margin: 20px;
+  width: 80%;
+  max-width: 600px;
+  margin: 20px auto;
+  background-color: rgba(255, 255, 255, 0.1); /* Reduced opacity */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.add-car input,
+.add-car button {
+  display: block;
+  margin: 10px auto;
+  width: calc(100% - 20px);
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.add-car input:focus,
+.add-car button:focus {
+  outline: none;
+}
+
+.car-preview {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+body {
+  background-image: url('/Users/muhammad/Desktop/Car_Rental_Final_Blockchain-1/car-rental-frontend/backgroundimage.jpeg');
+  background-size: cover;
+  background-position: center;
+  color: #333;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}

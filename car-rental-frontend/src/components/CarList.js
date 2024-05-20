@@ -10,6 +10,7 @@ import DefaultCarImage from '../carImages/default-car-image.png';
 import lamborghini from '../carImages/lamborghini.png';
 import mclaren from '../carImages/mclaren.png';
 import ferrari from '../carImages/ferrari.png';
+import f12 from '../carImages/f12.png';
 
 const CarList = () => {
   const [web3, setWeb3] = useState(null);
@@ -116,6 +117,8 @@ const CarList = () => {
         return mclaren;
       case 'ferrari':
         return ferrari;
+      case 'ferrari':
+          return ferrari;
       // Add cases for other cars as needed
       default:
         return DefaultCarImage; // Return null for unknown cars

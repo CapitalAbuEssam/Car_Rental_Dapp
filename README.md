@@ -1,5 +1,3 @@
-![Screenshot 2024-05-21 at 5 25 41 PM](https://github.com/CapitalAbuEssam/Car_Rental_Dapp/assets/170141175/5a346470-1dd3-4834-b506-bd3a80334f7d)
-
 # Before you start
 Download node.js and make sure to download the npm packages necessary to work download truffle
 

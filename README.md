@@ -6,9 +6,18 @@ You'll also download ganache which is a UI representation of what you actully do
 Lastly, you'll download the Metamask extension from your browser.
 
 # Frontend
+
+# Add Cars page
 <img width="1440" alt="frontend_interface" src="https://github.com/CapitalAbuEssam/Car_Rental_Dapp/assets/170141175/68b734ab-65b2-4a2f-8902-25880fbbb902">
 
+# Owner of the contract view
+<img width="1425" alt="Screenshot 2024-05-21 at 11 17 55 PM" src="https://github.com/CapitalAbuEssam/Car_Rental_Dapp/assets/170141175/3c6e2b3d-b10f-4af5-9fd0-30a16abb8a47">
 
+# View of another metamask account that rentered a car
+![Uploading Screenshot 2024-05-21 at 11.19.41 PM.png…]()
+
+# View of the Owner after a renter has rented a car
+<img width="1422" alt="Screenshot 2024-05-21 at 11 20 36 PM" src="https://github.com/CapitalAbuEssam/Car_Rental_Dapp/assets/170141175/a6376463-0aaa-4748-b347-0ee6395a2176">
 
 
 # Setting up the Car Rental Dapp

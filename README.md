@@ -9,7 +9,7 @@ You'll also download ganache which is a UI representation of what you actully do
 Lastly, you'll download the Metamask extension from your browser.
 
 # Frontend
-![Uploading Screenshot 2024-05-21 at 5.24.54 PM.png…]()
+![Uploading Screenshot 2024-05-21 at 5.25.41 PM.png…]()
 
 
 # Setting up the Car Rental Dapp

@@ -1,0 +1,25 @@
+/* footer.css */
+.footer {
+    background-color: #737373;
+    padding: 0.1px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+    transition: transform 0.3s ease-in-out; /* Add transition for smooth appearance */
+    transform: translateY(100%); /* Initially hide the footer */
+  }
+  
+  .footer.visible {
+    transform: translateY(0); /* Show the footer when the 'visible' class is applied */
+  }
+  
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  
+  .text-muted {
+    color: #ffffff;
+  }
+  

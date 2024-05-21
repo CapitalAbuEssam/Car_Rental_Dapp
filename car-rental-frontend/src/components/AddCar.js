@@ -1,5 +1,3 @@
-// src/components/AddCar.js
-
 import React, { useState, useEffect } from 'react';
 import CarRentalContract from '../build/contracts/CarRental.json';
 import getWeb3 from '../getWeb3';
@@ -15,55 +13,54 @@ const AddCar = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-  const initWeb3 = async () => {
-    try {
-      const web3Instance = await getWeb3();
-      const networkId = await web3Instance.eth.net.getId();
-      const deployedNetwork = CarRentalContract.networks[networkId];
-      const contractInstance = new web3Instance.eth.Contract(
-        CarRentalContract.abi,
-        deployedNetwork && deployedNetwork.address,
-      );
-      const accounts = await web3Instance.eth.getAccounts();
-      setWeb3(web3Instance);
-      setAccounts(accounts);
-      setContract(contractInstance);
-      setLoading(false);
+    const initWeb3 = async () => {
+      try {
+        const web3Instance = await getWeb3();
+        const networkId = await web3Instance.eth.net.getId();
+        const deployedNetwork = CarRentalContract.networks[networkId];
+        const contractInstance = new web3Instance.eth.Contract(
+          CarRentalContract.abi,
+          deployedNetwork && deployedNetwork.address,
+        );
+        const accounts = await web3Instance.eth.getAccounts();
+        setWeb3(web3Instance);
+        setAccounts(accounts);
+        setContract(contractInstance);
+        setLoading(false);
 
-      // Event listeners for MetaMask account and network changes
-      if (window.ethereum) {
-        window.ethereum.on('accountsChanged', handleAccountsChanged);
-        window.ethereum.on('chainChanged', handleChainChanged);
-        console.log('Event listeners registered');
+        // Event listeners for MetaMask account and network changes
+        if (window.ethereum) {
+          window.ethereum.on('accountsChanged', handleAccountsChanged);
+          window.ethereum.on('chainChanged', handleChainChanged);
+          console.log('Event listeners registered');
+        }
+      } catch (error) {
+        console.error('Error initializing web3:', error);
+        alert('Failed to load web3, accounts, or contract. Check console for details.');
       }
-    } catch (error) {
-      console.error('Error initializing web3:', error);
-      alert('Failed to load web3, accounts, or contract. Check console for details.');
-    }
-  };
+    };
 
-  const handleAccountsChanged = (newAccounts) => {
-    console.log('Accounts changed:', newAccounts);
-    setAccounts(newAccounts);
-  };
+    const handleAccountsChanged = (newAccounts) => {
+      console.log('Accounts changed:', newAccounts);
+      setAccounts(newAccounts);
+    };
 
-  const handleChainChanged = () => {
-    console.log('Chain changed');
-    window.location.reload();
-  };
+    const handleChainChanged = () => {
+      console.log('Chain changed');
+      window.location.reload();
+    };
 
-  initWeb3();
+    initWeb3();
 
-  // Cleanup event listeners on component unmount
-  return () => {
-    if (window.ethereum) {
-      window.ethereum.removeListener('accountsChanged', handleAccountsChanged);
-      window.ethereum.removeListener('chainChanged', handleChainChanged);
-      console.log('Event listeners removed');
-    }
-  };
-}, []);
-  
+    // Cleanup event listeners on component unmount
+    return () => {
+      if (window.ethereum) {
+        window.ethereum.removeListener('accountsChanged', handleAccountsChanged);
+        window.ethereum.removeListener('chainChanged', handleChainChanged);
+        console.log('Event listeners removed');
+      }
+    };
+  }, []);
 
   const handleAddCar = async () => {
     if (!web3 || !accounts || !contract) {
@@ -73,6 +70,13 @@ const AddCar = () => {
   
     if (carName === '' || carPrice === '' || !carImage) {
       alert('Please fill in all fields and select an image');
+      return;
+    }
+  
+    // Validate carPrice using regex
+    const regex = /^\d*\.?\d+$/;
+    if (!regex.test(carPrice) || parseFloat(carPrice) <= 0) {
+      alert('Please enter a valid positive number for the price');
       return;
     }
   
@@ -92,7 +96,7 @@ const AddCar = () => {
       console.error('Error adding car:', error);
       alert('Error adding car');
     }
-  };      
+  };  
 
   const handleImageUpload = (event) => {
     setCarImage(URL.createObjectURL(event.target.files[0]));
@@ -112,7 +116,8 @@ const AddCar = () => {
         onChange={(e) => setCarName(e.target.value)}
       />
       <input
-        type="text"
+        type="number"
+        min="0"
         placeholder="Price per Day (in ETH)"
         value={carPrice}
         onChange={(e) => setCarPrice(e.target.value)}

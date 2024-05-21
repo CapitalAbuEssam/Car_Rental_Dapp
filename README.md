@@ -1,4 +1,4 @@
-# Car_Rental_Final_Blockchain
+![Screenshot 2024-05-21 at 5 25 41 PM](https://github.com/CapitalAbuEssam/Car_Rental_Dapp/assets/170141175/5a346470-1dd3-4834-b506-bd3a80334f7d)# Car_Rental_Final_Blockchain
 Created by Muhammad Essam
 
 # Before you start
@@ -9,7 +9,8 @@ You'll also download ganache which is a UI representation of what you actully do
 Lastly, you'll download the Metamask extension from your browser.
 
 # Frontend
-![Uploading Screenshot 2024-05-21 at 5.25.41 PM.png…]()
+<img width="1440" alt="frontend_interface" src="https://github.com/CapitalAbuEssam/Car_Rental_Dapp/assets/170141175/68b734ab-65b2-4a2f-8902-25880fbbb902">
+
 
 
 # Setting up the Car Rental Dapp

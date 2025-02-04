@@ -48,4 +48,4 @@ This application allows users to rent cars from a decentralized car rental platf
 To run the application locally, ensure you have MetaMask installed in your browser and connect it to the Ethereum test network (e.g., Rinkeby). Then, clone the repository, install dependencies, and start the development server.
 
 # Enjoy your local Dapp Car Rental!
-
+This project is under copyright protection © CapitalAbuEssam

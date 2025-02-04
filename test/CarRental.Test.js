@@ -108,4 +108,31 @@ contract("CarRental", (accounts) => {
     const renter = await carRentalInstance.getRenter(1);
     expect(renter).to.equal(renter1);
   });
+
+  it("should allow the owner to remove a car", async () => {
+    const { expect } = await import('chai');
+    await carRentalInstance.addCar("Tesla Model S", web3.utils.toWei("1", "ether"), { from: owner });
+    await carRentalInstance.removeCar(1, { from: owner });
+
+    const car = await carRentalInstance.cars(1);
+    expect(car.id.toNumber()).to.equal(0); // Convert BN to number and then check if the ID is default (0)
+    expect(car.name).to.equal(""); // Check if the name is default (empty string)
+    expect(car.pricePerDay.toString()).to.equal("0"); // Convert BN to string and then check if the pricePerDay is default (0)
+    expect(car.isRented).to.be.false; // Check if isRented is default (false)
+    expect(car.renter).to.equal("0x0000000000000000000000000000000000000000"); // Check if renter is default (address 0)
+    expect(car.rentalEndTime.toNumber()).to.equal(0); // Convert BN to number and then check if rentalEndTime is default (0)
+  });
+
+  it("should not allow the owner to remove a car that is currently rented", async () => {
+    const { expect } = await import('chai');
+    await carRentalInstance.addCar("Tesla Model S", web3.utils.toWei("1", "ether"), { from: owner });
+    await carRentalInstance.rentCar(1, 2, { from: renter1, value: web3.utils.toWei("2", "ether") });
+
+    try {
+      await carRentalInstance.removeCar(1, { from: owner });
+      expect.fail("Owner was able to remove a rented car");
+    } catch (error) {
+      expect(error.reason).to.equal("Cannot remove a car that is currently rented");
+    }
+  });
 });

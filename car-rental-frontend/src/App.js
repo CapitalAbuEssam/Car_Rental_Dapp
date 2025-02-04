@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Web3 from 'web3';
 import CarRentalContract from './build/contracts/CarRental.json';
 import CarList from './components/CarList';
 import AddCar from './components/AddCar';
+import Footer from './components/footer.js';
 import Header from './components/Header.js';
 
 function App() {
-  const [contractInstance, setContractInstance] = useState(null);
-  const rentalServiceName = "Muhammad Essam";
-  const accountAddress = "0x1234...";
+  const [contract, setContract] = useState(null);
 
   useEffect(() => {
     async function initContract() {
-      // Connect to MetaMask provider
+      // Connect to MetaMask provider and initialize contract instance
       if (window.ethereum) {
         window.web3 = new Web3(window.ethereum);
         try {
@@ -23,12 +22,13 @@ function App() {
           // Get contract instance
           const networkId = await web3.eth.net.getId();
           const deployedNetwork = CarRentalContract.networks[networkId];
-          const contract = new web3.eth.Contract(
+          const contractInstance = new web3.eth.Contract(
             CarRentalContract.abi,
             deployedNetwork && deployedNetwork.address,
           );
 
-          setContractInstance(contract);
+          // Set the contract instance to state
+          setContract(contractInstance);
         } catch (error) {
           console.error('Error connecting to provider:', error);
         }
@@ -40,21 +40,13 @@ function App() {
     initContract();
   }, []);
 
-  // Example function to call contract method
-  const rentCar = async () => {
-    try {
-      const accounts = await window.web3.eth.getAccounts();
-      await contractInstance.methods.rentCar(1, 3).send({ from: accounts[0], value: 300 });
-    } catch (error) {
-      console.error('Error renting car:', error);
-    }
-  };
-
   return (
     <div className="App">
       <Header />
-      <CarList />
-      <AddCar />
+      <CarList contract={contract} />
+      <AddCar contract={contract} />
+      <div style={{ marginBottom: '80px' }}> {/* Adjust margin bottom as needed */} </div>
+      <Footer />
     </div>
   );
 }

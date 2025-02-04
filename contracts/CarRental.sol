@@ -25,6 +25,7 @@ contract CarRental {
     event CarAdded(uint id, string name, uint pricePerDay);
     event CarRented(uint id, address renter);
     event CarReturned(uint id);
+    event CarRemoved(uint id);
 
     // Modifier to restrict access to the owner
     modifier onlyOwner() {
@@ -39,9 +40,22 @@ contract CarRental {
 
     // Function to add a new car, can only be called by the owner
     function addCar(string memory _name, uint _pricePerDay) public onlyOwner {
+        require(_pricePerDay > 0, "Price per day must be a positive number");
         carCount++;
         cars[carCount] = Car(carCount, _name, _pricePerDay, false, address(0), 0);
         emit CarAdded(carCount, _name, _pricePerDay);
+    }
+
+    // Function to remove a car, can only be called by the owner
+    function removeCar(uint _id) public onlyOwner {
+        require(_id > 0 && _id <= carCount, "Car ID is invalid");
+        require(!cars[_id].isRented, "Cannot remove a car that is currently rented");
+
+        // Remove the car from the mapping
+        delete cars[_id];
+
+        // Emit event
+        emit CarRemoved(_id);
     }
 
     // Function to rent a car
